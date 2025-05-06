@@ -1,3 +1,9 @@
 # DY estimation
 
 This repository implements a data-driven background estimation with generative transformers model.
+
+Latest performance plots and results:
+
+![losses and learning rate](outputs/loss_and_LR.png)
+
+![di-lepton mass comparison](outputs/mll_comparison.png)
