@@ -217,13 +217,14 @@ class Data(Mapping):
 
 
 class TransformerDataset(Dataset):
-    def __init__(self, df, variable_sets, device):
+    def __init__(self, df, variable_sets, weight_branch, device):
         self.variable_vecs = torch.stack(
             [torch.tensor(df[var].values, dtype=torch.float32).to(device) for var in variable_sets], dim=1
         )
+        self.weights = torch.tensor(df[weight_branch].values, dtype=torch.float32).to(device)
 
     def __len__(self):
         return self.variable_vecs.shape[0]
 
     def __getitem__(self, idx):
-        return self.variable_vecs[idx]
+        return [self.variable_vecs[idx], self.weights[idx]]
